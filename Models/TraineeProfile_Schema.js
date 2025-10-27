@@ -59,7 +59,11 @@ const TraineeProfile = new mongoose.Schema({
     effort_level:{
         type:String,
         enum: ['Very Low', 'Low', 'Moderate', 'High', 'Very High']
-    }
+    },
+
+    gone_Days :{
+        type:Number,
+    },
 
 })
 

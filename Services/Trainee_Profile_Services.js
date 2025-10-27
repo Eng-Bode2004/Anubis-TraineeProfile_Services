@@ -4,7 +4,7 @@ class Trainee_Profile_Services {
 
     async createTraineeProfile(TraineeProfileData) {
         try {
-            const { name, date_of_birth, gender, height_cm, effort_level } = TraineeProfileData;
+            const { name, date_of_birth, gender, height_cm, effort_level,gone_Days } = TraineeProfileData;
             const { first_name, middle_name, last_name } = name || {};
 
             // Check if Trainee Profile exists
@@ -49,6 +49,7 @@ class Trainee_Profile_Services {
                 date_of_birth,
                 effort_level,
                 height_cm,
+                gone_Days
             });
 
             await newTrainee_Profile.save();

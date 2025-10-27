@@ -30,11 +30,6 @@ const TraineeProfile = new mongoose.Schema({
         type:Number,
     },
 
-    height_cm:{
-        type:Number,
-        required:true,
-    },
-
     profile_Image:{
         type:String,
     },

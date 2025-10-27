@@ -4,19 +4,8 @@ class Trainee_Profile_Services {
 
     async createTraineeProfile(TraineeProfileData) {
         try {
-            const { name, date_of_birth, gender, height_cm, effort_level,gone_Days } = TraineeProfileData;
+            const { name, date_of_birth, gender, effort_level,gone_Days } = TraineeProfileData;
             const { first_name, middle_name, last_name } = name || {};
-
-            // // Check if Trainee Profile exists
-            // const existTraineeProfile = await Trainee_Profile_Schema.findOne({
-            //     'name.first_name': first_name,
-            //     'name.middle_name': middle_name,
-            //     'name.last_name': last_name,
-            // });
-
-            // if (existTraineeProfile) {
-            //     throw new Error('Trainee profile already exists');
-            // }
 
             // Calculate Age
             const calculateAge = (birthDate) => {
@@ -48,7 +37,6 @@ class Trainee_Profile_Services {
                 age,
                 date_of_birth,
                 effort_level,
-                height_cm,
                 gone_Days
             });
 

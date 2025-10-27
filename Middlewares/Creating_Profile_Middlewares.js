@@ -1,6 +1,6 @@
 module.exports = function creating_Profile(req, res, next) {
     try {
-        const { name, date_of_birth, gender, height_cm, effort_level, gone_Days } = req.body;
+        const { name, date_of_birth, gender, effort_level, gone_Days } = req.body;
 
         // Ensure name object exists
         if (!name || typeof name !== 'object') {
@@ -39,13 +39,6 @@ module.exports = function creating_Profile(req, res, next) {
             return res.status(400).json({ error: 'Please enter gender' });
         }
 
-        if (!height_cm || isNaN(height_cm)) {
-            return res.status(400).json({ error: 'Please enter valid height_cm' });
-        }
-
-        if (height_cm < 130 || height_cm > 250) {
-            return res.status(400).json({ error: 'Please enter a realistic height in cm' });
-        }
 
         if (!effort_level) {
             return res.status(400).json({ error: 'Please enter effort level' });

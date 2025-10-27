@@ -7,16 +7,16 @@ class Trainee_Profile_Services {
             const { name, date_of_birth, gender, height_cm, effort_level,gone_Days } = TraineeProfileData;
             const { first_name, middle_name, last_name } = name || {};
 
-            // Check if Trainee Profile exists
-            const existTraineeProfile = await Trainee_Profile_Schema.findOne({
-                'name.first_name': first_name,
-                'name.middle_name': middle_name,
-                'name.last_name': last_name,
-            });
+            // // Check if Trainee Profile exists
+            // const existTraineeProfile = await Trainee_Profile_Schema.findOne({
+            //     'name.first_name': first_name,
+            //     'name.middle_name': middle_name,
+            //     'name.last_name': last_name,
+            // });
 
-            if (existTraineeProfile) {
-                throw new Error('Trainee profile already exists');
-            }
+            // if (existTraineeProfile) {
+            //     throw new Error('Trainee profile already exists');
+            // }
 
             // Calculate Age
             const calculateAge = (birthDate) => {

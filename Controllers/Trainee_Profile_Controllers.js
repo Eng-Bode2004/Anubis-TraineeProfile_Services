@@ -30,6 +30,27 @@ class Trainee_Profile_Controllers {
             });
         }
     }
+
+
+    async uploadProfileImage(req, res) {
+        try {
+            const { Trainee_Profile } = req.params;
+            const profile_Image = req.body;
+
+            const updatedProfile = await Trainee_Profile_Services.uploadImage(Trainee_Profile, profile_Image);
+
+            res.status(200).json({
+                success: true,
+                message: 'Profile image uploaded successfully',
+                data: updatedProfile
+            });
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: error.message
+            });
+        }
+    }
 }
 
 module.exports = new Trainee_Profile_Controllers();

@@ -48,6 +48,27 @@ class Trainee_Profile_Services {
         }
     }
 
+
+    async uploadImage(Trainee_Profile_ID, profile_Image_URL) {
+        try {
+            if (!Trainee_Profile_ID) throw new Error('Trainee profile ID is required');
+            if (!profile_Image_URL) throw new Error('Profile image URL is required');
+
+            const updatedProfile = await Trainee_Profile_Schema.findByIdAndUpdate(
+                Trainee_Profile_ID,
+                { profile_Image: profile_Image_URL },
+                { new: true }
+            );
+
+            if (!updatedProfile) throw new Error('Trainee profile not found');
+
+            return updatedProfile;
+
+        } catch (error) {
+            throw new Error(error.message || 'Error uploading profile image');
+        }
+    }
+
 }
 
 module.exports = new Trainee_Profile_Services();

@@ -69,6 +69,29 @@ class Trainee_Profile_Services {
         }
     }
 
+    async getTraineeProfile(Trainee_Profile_ID = null) {
+        try {
+            if (Trainee_Profile_ID) {
+                // Find one by ID
+                const profile = await Trainee_Profile_Schema.findById(Trainee_Profile_ID)
+                    .populate('SubscriptionPlan', 'name duration_weeks goal_type') // optional populate
+                    .lean();
+
+                if (!profile) throw new Error('Trainee profile not found');
+                return profile;
+            }
+
+            // Return all profiles if no ID
+            const allProfiles = await Trainee_Profile_Schema.find()
+                .populate('SubscriptionPlan', 'name duration_weeks goal_type')
+                .lean();
+
+            return allProfiles;
+        } catch (error) {
+            throw new Error(error.message || 'Error fetching trainee profile(s)');
+        }
+    }
+
 }
 
 module.exports = new Trainee_Profile_Services();

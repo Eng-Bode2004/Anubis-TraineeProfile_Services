@@ -51,6 +51,24 @@ class Trainee_Profile_Controllers {
             });
         }
     }
+
+    async getTraineeProfile(req, res) {
+        try {
+            const { Trainee_Profile } = req.params; // optional param
+            const profileData = await Trainee_Profile_Services.getTraineeProfile(Trainee_Profile);
+
+            res.status(200).json({
+                success: true,
+                message: 'Trainee profile(s) retrieved successfully',
+                data: profileData,
+            });
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: error.message,
+            });
+        }
+    }
 }
 
 module.exports = new Trainee_Profile_Controllers();

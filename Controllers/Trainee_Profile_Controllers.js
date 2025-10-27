@@ -35,7 +35,7 @@ class Trainee_Profile_Controllers {
     async uploadProfileImage(req, res) {
         try {
             const { Trainee_Profile } = req.params;
-            const profile_Image = req.body;
+            const {profile_Image} = req.body;
 
             const updatedProfile = await Trainee_Profile_Services.uploadImage(Trainee_Profile, profile_Image);
 

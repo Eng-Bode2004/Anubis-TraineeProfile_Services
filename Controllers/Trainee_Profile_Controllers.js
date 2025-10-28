@@ -91,6 +91,22 @@ class Trainee_Profile_Controllers {
         }
     }
 
+    async getAllTrainees(req, res) {
+        try {
+            const profiles = await Trainee_Profile_Services.getTraineesProfiles();
+            res.status(200).json({
+                success: true,
+                message: 'All trainee profiles retrieved successfully',
+                data: profiles
+            });
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: error.message
+            });
+        }
+    }
+
 }
 
 module.exports = new Trainee_Profile_Controllers();

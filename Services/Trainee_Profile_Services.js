@@ -124,6 +124,18 @@ class Trainee_Profile_Services {
         }
     }
 
+    async getTraineesProfiles() {
+        try {
+            const allProfiles = await Trainee_Profile_Schema.find()
+
+            if (!allProfiles.length) throw new Error('No trainee profiles found');
+
+            return allProfiles;
+        } catch (error) {
+            throw new Error(error.message || 'Error fetching trainee profiles');
+        }
+    }
+
 }
 
 module.exports = new Trainee_Profile_Services();

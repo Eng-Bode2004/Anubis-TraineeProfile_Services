@@ -15,5 +15,6 @@ router.get('/:Trainee_Profile', TraineeProfile_Controller.getTraineeProfile);
 // Update trainee name
 router.put('/update-name/:Trainee_Profile', TraineeProfile_Controller.updateTraineeName);
 
+router.get('/', TraineeProfile_Controller.getAllTrainees);
 
 module.exports = router;

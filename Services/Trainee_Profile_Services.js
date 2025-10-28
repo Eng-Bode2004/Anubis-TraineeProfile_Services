@@ -92,6 +92,38 @@ class Trainee_Profile_Services {
         }
     }
 
+    async updateTraineeName(Trainee_Profile_ID, nameData) {
+        try {
+            if (!Trainee_Profile_ID) throw new Error('Trainee profile ID is required');
+            if (!nameData || typeof nameData !== 'object') throw new Error('Name data is required');
+
+            const { first_name, middle_name, last_name } = nameData;
+
+            // Validate inputs
+            if (!first_name?.trim() || !last_name?.trim()) {
+                throw new Error('First name and last name are required');
+            }
+
+            const updatedProfile = await Trainee_Profile_Schema.findByIdAndUpdate(
+                Trainee_Profile_ID,
+                {
+                    $set: {
+                        'name.first_name': first_name.trim(),
+                        'name.middle_name': middle_name ? middle_name.trim() : undefined,
+                        'name.last_name': last_name.trim(),
+                    }
+                },
+                { new: true }
+            );
+
+            if (!updatedProfile) throw new Error('Trainee profile not found');
+
+            return updatedProfile;
+        } catch (error) {
+            throw new Error(error.message || 'Error updating trainee name');
+        }
+    }
+
 }
 
 module.exports = new Trainee_Profile_Services();

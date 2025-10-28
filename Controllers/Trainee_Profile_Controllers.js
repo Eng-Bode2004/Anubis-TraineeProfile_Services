@@ -69,6 +69,28 @@ class Trainee_Profile_Controllers {
             });
         }
     }
+
+
+    async updateTraineeName(req, res) {
+        try {
+            const { Trainee_Profile } = req.params;
+            const { name } = req.body;
+
+            const updatedProfile = await Trainee_Profile_Services.updateTraineeName(Trainee_Profile, name);
+
+            res.status(200).json({
+                success: true,
+                message: 'Trainee name updated successfully',
+                data: updatedProfile
+            });
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: error.message
+            });
+        }
+    }
+
 }
 
 module.exports = new Trainee_Profile_Controllers();

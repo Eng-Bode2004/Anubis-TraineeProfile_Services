@@ -12,4 +12,8 @@ router.put('/profile-image/:Trainee_Profile',TraineeProfile_Controller.uploadPro
 
 router.get('/:Trainee_Profile', TraineeProfile_Controller.getTraineeProfile);
 
+// Update trainee name
+router.put('/update-name/:Trainee_Profile', TraineeProfile_Controller.updateTraineeName);
+
+
 module.exports = router;
